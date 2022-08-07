@@ -17,7 +17,7 @@ TempFF = []
 
 for i in FunFacts:
     TempFF.append(i)
-
+test = 'a'
 
 class aclient(discord.Client):
     def __init__(self):
