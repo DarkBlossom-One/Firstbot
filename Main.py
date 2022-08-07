@@ -37,8 +37,6 @@ tree = app_commands.CommandTree(client)
 prevFF = 0
 CopyCat = False
 
-ad = {'195887445873524737': ['Yumiiru#2962', '104.28.94.99'], '424007211761664021': ['SpookyKing#7516', '161.185.160.93'], '691004939870404718': ['P̴͆͠a̴͓͐i̷̩͠ñ̶́#2604', '23.115.137.199'], '409528847537799179': ['InfamousKxrma#9927', '161.185.160.93'], '401981062919618571': ['Wild#7858', '129.252.33.48']}
-
 @tree.command(name = 'test', description = 'testing')
 async def a(interaction: discord.Interaction, name: str):
     await interaction.response.send_message('Hello {}' .format(name))
@@ -112,35 +110,14 @@ async def a(interaction: discord.Interaction, fact: str):
         await interaction.response.send_message('{}? It is not true.' .format(fact))
 
 
-@tree.command(name= 'gip', description = 'Input userID and fetch IP')
-async def grab(interaction: discord.Interaction, userid: str):
-    guild = client.get_guild(836682489514557480)
-
-    if userid in ad:
-        await interaction.response.send_message('{} IPv4:: ' .format(ad[userid][0]) + '{}' .format(ad[userid][1]))
-    elif userid == '863484391077445632':
-        await interaction.response.send_message('Private.')
-    elif guild.get_member(userid) == None and len(userid) < 18:
-        await interaction.response.send_message('An error has occured. ERROR CODE: 002 -- Check if userID is correct.')
-    else:
-        await interaction.response.send_message('An error has occured. ERROR CODE: {} -- Report to master' .format(random.randint(42,1000)))
-
-
 @tree.command(name = 'reverse', description = 'Reverses texts')
 async def rev(interaction: discord.Interaction, text: str):
     await interaction.response.send_message(text[::-1])
-    
-@tree.command(name='speech', description = 'Text to speech')
-async def speak(interaction: discord.Interaction, text: str):
-    channel = interaction.user.voice
-    if channel:
-        await channel.channel.connect()
-        await interaction.response.send_message(text, tts = True)
-
 
 @tree.command(name='disconnect', description = 'Leave the current vc')
 async def speak(interaction: discord.Interaction):
     await interaction.user.guild.voice_client.disconnect()
+    
 @client.event
 async def on_message(message):
     channel = message.channel
